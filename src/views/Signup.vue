@@ -23,7 +23,7 @@
             </div>
             <div class="input">
                 <label for="">Retype Password </label>
-                <input type="text"  id="" placeholder="">
+                <input type="text"  placeholder="">
             </div>
         </form>
     </div>
