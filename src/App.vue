@@ -24,13 +24,20 @@ export default {
   },
 
   created(){
-    this.checkRoute(),
+    this.checkRoute();
+    this.checkLogged()
+
+  },
+
+  mounted() {
     this.checkLogged()
   },
 
   watch:{
     $route(){
       this.checkRoute();
+      this.checkLogged()
+
     },
   },
 
@@ -50,10 +57,10 @@ export default {
       onAuthStateChanged(auth , (user) => {
         if (user){
           this.isLogged = true;
-          console.log("Hello")
+          this.$store.dispatch('getCurrentUser');
+        
         } else {
           this.isLogged = false;
-          console.log("HI")
         }
       })
     },

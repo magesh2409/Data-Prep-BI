@@ -58,7 +58,7 @@ export default {
 
     methods: {
         async signUp() {
-            // Field validation
+    
             if (!this.firstName || !this.lastName || !this.email || !this.password || !this.confirmPassword) {
                 this.errorMsg = 'All fields are required.';
                 return;
@@ -70,7 +70,7 @@ export default {
             }
 
             try {
-                const auth = getAuth(); // Initialize Firebase Auth
+                const auth = getAuth(); 
                 const createUser = await createUserWithEmailAndPassword(auth, this.email, this.password); // Create user
                 const id = createUser.user.uid; // Get user ID
 
