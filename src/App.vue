@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <Navbar v-if="showNav"></Navbar>
+    <Navbar v-if="showNav" :isLogged = "isLogged"></Navbar>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue';
+import { getAuth , onAuthStateChanged } from 'firebase/auth';
+
 
 export default {
   name: 'App',
   data(){
     return {
       showNav : true,
+      isLogged : false,
     }
   },
 
@@ -21,7 +24,8 @@ export default {
   },
 
   created(){
-    this.checkRoute()
+    this.checkRoute(),
+    this.checkLogged()
   },
 
   watch:{
@@ -33,12 +37,25 @@ export default {
   methods:{
     checkRoute() {
       let path = this.$route.name;
-      if(path === "Signup"){
+      if(path === "Signup" || path == "Login" || path === "forgotPassword"){
         this.showNav = false;
       }
       else {
         this.showNav = true;
       }
+    },
+
+    checkLogged(){
+      const auth = getAuth();
+      onAuthStateChanged(auth , (user) => {
+        if (user){
+          this.isLogged = true;
+          console.log("Hello")
+        } else {
+          this.isLogged = false;
+          console.log("HI")
+        }
+      })
     },
   },
 
@@ -50,11 +67,11 @@ export default {
 
 <style>
 #app {
-  font-family: open sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 20px;
+
 }
 </style>
