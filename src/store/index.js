@@ -5,9 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 100
+    profileFirstName : null,
+    profileLastName : null,
+    profileEmail : null,
+    user : null,
+    profileUID : null,
   },
   mutations: {
+
   },
   actions: {
   },
