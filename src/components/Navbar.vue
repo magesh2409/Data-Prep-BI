@@ -15,6 +15,12 @@
             <div class="login-menu" v-show="showNavElements">
                 <router-link :to="{name:'Login'}" class="navbar__menu-item" v-if="!isLogged">Log In</router-link>
                 <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-if="!isLogged">Sign Up</router-link>
+                <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ this.initials }}</p>
+                <div class="account-details" v-if="showAccount && isLogged">
+                    <router-link :to="{name:'Profile'}" class="profile">Profile</router-link>
+                    <p @click="signoutAccount" >Sign Out</p>
+                </div>
+
             </div>
         </div>
 
@@ -24,11 +30,17 @@
 
                 <div class="mobile-nav__menu" v-if="showMobileNav && toggleMobileNav">
                     <img src="../assets/logo.png" alt="" class="logo-DPB">
+                    <div class="logo">
+                        <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ initials }}</p>
+                        <p>{{ this.$store.state.profileEmail }}</p>
+
+                    </div>
                     <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Clean data</router-link>
                     <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Features </router-link>
                     <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Contact Us </router-link>
-                    <router-link :to="{name:'Login'}" class="navbar__menu-item login" v-show="showNavElements" v-if="!isLogged"> Log In </router-link>
+                    <router-link :to="{name:'Login'}" class="navbar__menu-item" v-show="showNavElements" v-if="!isLogged"> Log In </router-link>
                     <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-show="showNavElements" v-if="!isLogged"> Sign Up </router-link>
+                    <p @click="signoutAccount" class="signout-mobile">Sign Out</p>
                 </div>
             </transition>
 
@@ -38,6 +50,7 @@
 </template>
 
 <script>
+import { getAuth } from 'firebase/auth';
 export default {
     name : "Navbar",
 
@@ -47,6 +60,9 @@ export default {
             toggleMobileNav: false,
             showNavElements : true,
             isLogin : false,
+
+            initials : this.$store.state.profileInitials,
+            showAccount : false,
         }
     },
 
@@ -54,6 +70,7 @@ export default {
 
 
     created() {
+        console.log(this.initals)
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
         this.disableNav()
@@ -81,6 +98,12 @@ export default {
                 this.isLogin = true;
             }
         },
+
+        signoutAccount(){
+            const auth = getAuth();
+            auth.signOut();
+            window.location.reload();
+        }
     }
 }
 </script>
@@ -88,6 +111,34 @@ export default {
 
 <style scoped>
 
+.initial {
+    width : 45px;
+    height : 45px;
+    border-radius: 50%;
+    background-color: #edf0f2; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    cursor: pointer; 
+    /* padding-top: 5px; */
+}
+
+.signout-mobile {
+    cursor: pointer;
+}
+
+.profile {
+    text-decoration: none;
+  color: #2c3e50;
+
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+        }
 .navbar__menu-item {
     color : rgb(69,69,69);
     text-decoration: none;
@@ -129,12 +180,28 @@ export default {
         display: flex;
         align-items: center;
         gap:50px;
+        position: relative;
+        
 
         .signup {
             background-color:rgb(237,240,232);
             padding: 10px 20px;
             border-radius: 35px;
         }
+
+        .account-details {
+            position: absolute;
+            width:100px;
+            height:100px;
+            background-color: #ffffff;
+            z-index: 1000;
+            left:-30px;
+            top:70px;
+        }
+        p {
+            cursor: pointer;
+        }
+
     }
 
 }
@@ -178,10 +245,10 @@ export default {
 
 
         .logo-DPB {
-        padding:0px 20px;
-        width:70px;
-        height:auto;
-    }
+            padding:0px 20px;
+            width:70px;
+            height:auto;
+        }
 
         .navbar__menu-item {
             color : rgb(69,69,69);
@@ -193,13 +260,17 @@ export default {
         .login {
             border-bottom: none;
             padding-bottom: 0px;
+            margin-bottom: 0px;
+            height:30px;
         }
         .signup {
             background-color:rgb(237,240,232);
-            padding: 10px 20px;
+            padding-bottom: 0px;
             border-radius: 20px;
-            width:90%;
-            margin:5px 20px;
+            width:85%;
+            height:30px;
+            margin:5px 20px 140px 20px;
+            padding-bottom: 15px;
         }
     }
 
