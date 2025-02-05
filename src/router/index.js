@@ -5,6 +5,8 @@ import Login from '@/views/Login.vue';
 import Home from '@/views/Home.vue';
 import forgotPassword from '@/views/forgotPassword.vue';
 import Profile from '@/views/Profile.vue';
+import CleanData from '@/views/cleanData.vue';
+
 
 Vue.use(Router);
 
@@ -29,11 +31,24 @@ const routes = [
       component : forgotPassword,
       name:"forgotPassword"
     },
+    
+    {
+      path : '/clean-data',
+      component : CleanData,
+      name:"CleanData"
+    },
     {
       path : '/profile',
       component : Profile,
       name:"Profile"
     },
+    {
+      path : '/',
+      name:"OpeningPage",
+    },
+
+
+
 
 ];
 
