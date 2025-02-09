@@ -3,6 +3,7 @@
     <Navbar v-if="showNav" :isLogged = "isLogged"></Navbar>
     <Front v-if="isFront"></Front>
     <router-view></router-view>
+    <Footer v-if="showNav"></Footer>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import Navbar from './components/Navbar.vue';
 import { getAuth , onAuthStateChanged } from 'firebase/auth';
 import Front from './components/Front.vue';
+import Footer from './components/Footer.vue';
 
 
 export default {
@@ -23,7 +25,7 @@ export default {
   },
 
   components: {
-    Navbar , Front
+    Navbar , Front , Footer
   },
 
   created(){

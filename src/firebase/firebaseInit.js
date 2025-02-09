@@ -1,19 +1,18 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp , getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAZ4QsCUvMr4asGeGACFQAVVzPVlK4oZTI",
-  authDomain: "dataprep-bi.firebaseapp.com",
-  projectId: "dataprep-bi",
-  storageBucket: "dataprep-bi.firebasestorage.app",
-  messagingSenderId: "55151914100",
-  appId: "1:55151914100:web:2fd56298bc95daf4737521"
+  apiKey: "AIzaSyBLRz8420u4jvIlTyHVgEBo1gslVowsXHw",
+  authDomain: "dataprepbi-a92d3.firebaseapp.com",
+  projectId: "dataprepbi-a92d3",
+  storageBucket: "dataprepbi-a92d3.firebasestorage.app",
+  messagingSenderId: "374923371331",
+  appId: "1:374923371331:web:19a60ab9087aee52ed45f6"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = getApps().find(app => app.name === "DataPrepBI") || initializeApp(firebaseConfig, "DataPrepBI");
 
 const db = getFirestore(app);
 

@@ -9,7 +9,7 @@
                 <div class="navbar__menu" v-show="showNavElements">
                     <router-link to="#" class="navbar__menu-item">CLEAN DATA</router-link>
                     <router-link to="#" class="navbar__menu-item">FEATURES</router-link>
-                    <router-link to="#" class="navbar__menu-item">CONTACT US</router-link>
+                    <router-link :to="{name : 'ContactUs'}" class="navbar__menu-item">CONTACT US</router-link>
                 </div>
             </div>
             <div class="login-menu" v-show="showNavElements">
@@ -37,7 +37,7 @@
                     </div>
                     <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> CLEAN DATA</router-link>
                     <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> FEATURES </router-link>
-                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> CONTACT US </router-link>
+                    <router-link :to="{name : 'ContactUs'}" class="navbar__menu-item" v-show="showNavElements"> CONTACT US </router-link>
                     <router-link :to="{name:'Login'}" class="navbar__menu-item" v-show="showNavElements" v-if="!isLogged"> LOG IN </router-link>
                     <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-show="showNavElements" v-if="!isLogged"> SIGN UP </router-link>
                     <p @click="signoutAccount" class="signout-mobile">SIGN OUT</p>

@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "emailjs": "^4.0.3",
+    "emailjs-com": "^3.2.0",
     "firebase": "^11.2.0",
+    "nodemailer": "^6.10.0",
     "vue": "^2.6.14",
     "vue-router": "3",
     "vuex": "3"
@@ -22,6 +25,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "sass": "^1.84.0",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {

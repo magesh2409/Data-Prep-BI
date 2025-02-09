@@ -16,7 +16,13 @@ export default new Vuex.Store({
     profileEmail : null,
     user : false,
     profileUID : null,
-    profileInitials : null,
+    profileInitials : 'U',
+
+    contact : {
+      phone : "+91 6379412409",
+      email : "dataprepbi@gmail.com",
+      location : "Vellore , TN , IND"
+    }
   },
   mutations: {
 
@@ -28,7 +34,7 @@ export default new Vuex.Store({
     },
 
     setProfileInitial(state){
-      state.profileInitials = state.profileFirstName[0];
+      state.profileInitials = "U";
     },
 
     changeFirstName(state , payload){
