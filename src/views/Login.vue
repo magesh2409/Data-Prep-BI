@@ -18,7 +18,7 @@
                 <input type="password" name="" id="" placeholder="" v-model="password" >
             </div>
             <button @click.prevent="login">Login</button>
-            <p v-if="this.error" >{{ this.errorMsg }}</p>
+            <p v-show="this.error" class="error">{{ this.errorMsg }}</p>
 
             <router-link class="forgot-password link" :to="{name : 'forgotPassword'}">Forgot Password?</router-link>
         </form>
@@ -52,7 +52,11 @@ export default {
             })
             .catch((err) => {
                 this.error = true;
-                this.errorMsg = err.message;
+                this.errorMsg = err;
+                setTimeout(()=>{
+                    this.error = false;
+                },3000);
+                
             })
 
         },

@@ -1,9 +1,11 @@
 <template>
     <div class="register-container">
+
         <div class="upper">
             <h1>Create Your Free Account Now</h1>
             <p class="link">Already have an Account? <router-link :to="{name:'Login'}" class="link">Login</router-link></p>
         </div>
+
         <form @submit.prevent="signUp">
             <div class="toggle-login">
                 <router-link class="login" :to="{name:'Login'}">Log In</router-link>
@@ -32,8 +34,9 @@
 
             <button type="submit">Sign Up</button>
 
-            <p v-if="errorMsg" class="error">{{ errorMsg }}</p>
+            <p v-show="errorMsg" class="error">{{ errorMsg }}</p>
         </form>
+
     </div>
 </template>
 
@@ -61,11 +64,17 @@ export default {
     
             if (!this.firstName || !this.lastName || !this.email || !this.password || !this.confirmPassword) {
                 this.errorMsg = 'All fields are required.';
+                setTimeout(() => {
+                    this.errorMsg = null
+                },5000)
                 return;
             }
 
             if (this.password !== this.confirmPassword) {
                 this.errorMsg = 'Passwords do not match.';
+                setTimeout(() => {
+                    this.errorMsg = null
+                },5000)
                 return;
             }
 
@@ -82,15 +91,27 @@ export default {
                 });
 
                 this.$router.push({ name: 'Home' }); // Redirect to login page
-            } catch (error) {
-                this.errorMsg = error;
+            } catch(error) {
+                setTimeout(() => {
+                    this.errorMsg = error
+                },5000)
             }
-        }
+        },
+
     }
 }
 </script>
 
 <style>
+
+.error {
+    width: 100%;
+    background-color: #303030;
+    color:#fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
 button {
     padding: 10px 30px;
     background-color: rgb(15, 112, 230);
@@ -135,7 +156,7 @@ form {
     position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding-bottom: 100px;
-    margin-bottom: 200px;
+    margin-bottom: 20px;
 }
 
 .toggle-login {

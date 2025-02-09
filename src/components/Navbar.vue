@@ -2,19 +2,19 @@
     <div>
         <div class="navbar" v-if="!showMobileNav || isLogin">
             <div class="navbar-left">
-                <div class="navbar__logo">
-                    <img src="@/assets/logo.png" alt="logo" />
-                    <span>DataPrep BI</span>
+                <div class="navbar__logo" >
+                    <img src="@/assets/logo.png" @click="directToOpeningPage"   alt="logo" />
+                    <span @click="directToOpeningPage">DATAPREP BI</span>
                 </div>
                 <div class="navbar__menu" v-show="showNavElements">
-                    <router-link to="#" class="navbar__menu-item">Clean data</router-link>
-                    <router-link to="#" class="navbar__menu-item">Features</router-link>
-                    <router-link to="#" class="navbar__menu-item">Contact Us</router-link>
+                    <router-link to="#" class="navbar__menu-item">CLEAN DATA</router-link>
+                    <router-link to="#" class="navbar__menu-item">FEATURES</router-link>
+                    <router-link :to="{name : 'ContactUs'}" class="navbar__menu-item">CONTACT US</router-link>
                 </div>
             </div>
             <div class="login-menu" v-show="showNavElements">
-                <router-link :to="{name:'Login'}" class="navbar__menu-item" v-if="!isLogged">Log In</router-link>
-                <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-if="!isLogged">Sign Up</router-link>
+                <router-link :to="{name:'Login'}" class="navbar__menu-item" v-if="!isLogged">LOG IN</router-link>
+                <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-if="!isLogged">SIGN UP</router-link>
                 <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ this.initials }}</p>
                 <div class="account-details" v-if="showAccount && isLogged">
                     <router-link :to="{name:'Profile'}" class="profile">Profile</router-link>
@@ -29,18 +29,18 @@
             <transition name="mobile-nav__menu">
 
                 <div class="mobile-nav__menu" v-if="showMobileNav && toggleMobileNav">
-                    <img src="../assets/logo.png" alt="" class="logo-DPB">
+                    <img src="../assets/logo.png" alt="" class="logo-DPB" @click="directToOpeningPage">
                     <div class="logo">
                         <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ initials }}</p>
                         <p>{{ this.$store.state.profileEmail }}</p>
 
                     </div>
-                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Clean data</router-link>
-                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Features </router-link>
-                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> Contact Us </router-link>
-                    <router-link :to="{name:'Login'}" class="navbar__menu-item" v-show="showNavElements" v-if="!isLogged"> Log In </router-link>
-                    <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-show="showNavElements" v-if="!isLogged"> Sign Up </router-link>
-                    <p @click="signoutAccount" class="signout-mobile">Sign Out</p>
+                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> CLEAN DATA</router-link>
+                    <router-link to="#" class="navbar__menu-item" v-show="showNavElements"> FEATURES </router-link>
+                    <router-link :to="{name : 'ContactUs'}" class="navbar__menu-item" v-show="showNavElements"> CONTACT US </router-link>
+                    <router-link :to="{name:'Login'}" class="navbar__menu-item" v-show="showNavElements" v-if="!isLogged"> LOG IN </router-link>
+                    <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-show="showNavElements" v-if="!isLogged"> SIGN UP </router-link>
+                    <p @click="signoutAccount" class="signout-mobile">SIGN OUT</p>
                 </div>
             </transition>
 
@@ -103,6 +103,10 @@ export default {
             const auth = getAuth();
             auth.signOut();
             window.location.reload();
+        },
+
+        directToOpeningPage() {
+            this.$router.push({name:'OpeningPage'})
         }
     }
 }
@@ -162,6 +166,7 @@ export default {
         .navbar__logo {
             display: flex;
             align-items: center;
+            cursor: pointer;
             img {
                 width: 100px;
                 height:60px;
@@ -248,6 +253,7 @@ export default {
             padding:0px 20px;
             width:70px;
             height:auto;
+            cursor: pointer;
         }
 
         .navbar__menu-item {

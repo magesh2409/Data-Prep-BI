@@ -10,12 +10,12 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 
 .loading {
     top:0px;
-    width: 100%;
-    height: 100%;
+    width: 120%;
+    height: 100vh;
     position:fixed;
     display: flex;
     justify-content: center;
