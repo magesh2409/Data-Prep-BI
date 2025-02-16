@@ -15,10 +15,16 @@
             <div class="login-menu" v-show="showNavElements">
                 <router-link :to="{name:'Login'}" class="navbar__menu-item" v-if="!isLogged">LOG IN</router-link>
                 <router-link :to="{name : 'Signup'}" class="navbar__menu-item signup" v-if="!isLogged">SIGN UP</router-link>
-                <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ this.initials }}</p>
+                <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ this.$store.state.profileInitials }}</p>
                 <div class="account-details" v-if="showAccount && isLogged">
-                    <router-link :to="{name:'Profile'}" class="profile">Profile</router-link>
-                    <p @click="signoutAccount" >Sign Out</p>
+                    <div class="account-options">
+                        <img src="../assets/user-alt-light.svg" alt="" class="icon">
+                        <router-link :to="{name:'Profile'}" class="profile">Profile</router-link>
+                    </div>
+                    <div class="account-options">
+                        <img src="../assets/sign-out-alt-regular.svg" alt="" class="icon">
+                        <p @click="signoutAccount" >Sign Out</p>
+                    </div>
                 </div>
 
             </div>
@@ -31,7 +37,7 @@
                 <div class="mobile-nav__menu" v-if="showMobileNav && toggleMobileNav">
                     <img src="../assets/logo.png" alt="" class="logo-DPB" @click="directToOpeningPage">
                     <div class="logo">
-                        <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ initials }}</p>
+                        <p v-if="isLogged" class="initial" @click="showAccount = !showAccount">{{ this.$store.state.profileInitials }}</p>
                         <p>{{ this.$store.state.profileEmail }}</p>
 
                     </div>
@@ -60,8 +66,6 @@ export default {
             toggleMobileNav: false,
             showNavElements : true,
             isLogin : false,
-
-            initials : this.$store.state.profileInitials,
             showAccount : false,
         }
     },
@@ -196,12 +200,23 @@ export default {
 
         .account-details {
             position: absolute;
-            width:100px;
+            width:130px;
             height:100px;
             background-color: #ffffff;
             z-index: 1000;
-            left:-30px;
+            left:-50px;
             top:70px;
+
+            .account-options{
+                display: flex;
+                gap:10px;
+                padding-left: 5px;
+
+                .icon {
+                    width:20px;
+                    height: auto;
+                }
+            }
         }
         p {
             cursor: pointer;

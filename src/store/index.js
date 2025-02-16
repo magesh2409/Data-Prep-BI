@@ -16,7 +16,7 @@ export default new Vuex.Store({
     profileEmail : null,
     user : false,
     profileUID : null,
-    profileInitials : 'U',
+    profileInitials : null,
 
     contact : {
       phone : "+91 6379412409",
@@ -34,7 +34,10 @@ export default new Vuex.Store({
     },
 
     setProfileInitial(state){
-      state.profileInitials = "U";
+      console.log("from profile initials")
+      console.log(state.profileFirstName , state.profileLastName);
+      state.profileInitials = state.profileEmail[0].toUpperCase() + state.profileLastName[0];
+      console.log(state.profileInitials);
     },
 
     changeFirstName(state , payload){

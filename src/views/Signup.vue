@@ -34,7 +34,7 @@
 
             <button type="submit">Sign Up</button>
 
-            <p v-show="errorMsg" class="error">{{ errorMsg }}</p>
+            <p v-show="error" class="error">{{ errorMsg }}</p>
         </form>
 
     </div>
@@ -56,6 +56,7 @@ export default {
             password: '',
             confirmPassword: '',
             errorMsg: '',
+            error : false,
         };
     },
 
@@ -91,9 +92,12 @@ export default {
                 });
 
                 this.$router.push({ name: 'Home' }); // Redirect to login page
-            } catch(error) {
+            } catch(err) {
+                this.error = true;
+                this.errorMsg = err;
                 setTimeout(() => {
-                    this.errorMsg = error
+                    this.errorMsg = "";
+                    this.error = false;
                 },5000)
             }
         },
