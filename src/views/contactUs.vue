@@ -93,9 +93,8 @@ export default {
                 },3000);
                 this.error = true;
                 this.errorMsg = "Email Sent Succesfully";
-
-
-                
+        
+            
                 this.name = "";
                 this.email = "";
                 this.message = "";
@@ -104,7 +103,7 @@ export default {
                     this.error = false;
                     this.errorMsg = "";
                     this.isEmailSent = false;
-                },5000)
+                },3000)
             })
             .catch((err)=>{
                 this.isEmailSent = false;
